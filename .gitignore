@@ -6,3 +6,6 @@ dist
 
 # Files
 .env
+config.js
+STUDENT.txt
+

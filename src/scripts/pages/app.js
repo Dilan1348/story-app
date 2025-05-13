@@ -5,7 +5,8 @@ import {
   generateAuthenticatedNavigationListTemplate,
   generateUnauthenticatedNavigationListTemplate,
 } from '../template';
-import { transitionHelper } from '../utils';
+import { transitionHelper, isServiceWorkerAvailable } from '../utils';
+import { subscribe, unsubscribe, isCurrentPushSubscriptionAvailable } from '../utils/notification-helper';
 
 class App {
   #content = null;
@@ -19,6 +20,7 @@ class App {
 
     this._setupDrawer();
     this.setUpNav();
+    this.setupPushNotification();
   }
 
   _setupDrawer() {
@@ -61,6 +63,32 @@ class App {
     });
   }
 
+  async setupPushNotification() {
+    const isSubscribed = await isCurrentPushSubscriptionAvailable();
+    const subButton = document.getElementById('subscribe-button');
+    const unsubButton = document.getElementById('unsubscribe-button');
+    if (isSubscribed) {
+      subButton.setAttribute('hidden', '');
+      unsubButton.removeAttribute('hidden')
+
+      unsubButton.addEventListener('click', () => {
+        unsubscribe().finally(() => {
+          this.setupPushNotification();
+        });
+      });
+
+      return;
+    }
+
+    unsubButton.setAttribute('hidden', '');
+    subButton.removeAttribute('hidden')
+    subButton.addEventListener('click', () => {
+      subscribe().finally(() => {
+        this.setupPushNotification();
+      });
+    });
+  }
+
   async renderPage() {
     const url = getActiveRoute();
     const page = routes[url];
@@ -75,6 +103,10 @@ class App {
     transition.updateCallbackDone.then(() => {
       scrollTo({ top: 0, behavior: 'instant' });
       this.setUpNav();
+
+      if (isServiceWorkerAvailable()) {
+        this.setupPushNotification();
+      }
     });
   }
 }

@@ -55,6 +55,8 @@ export function generateLoaderAbsoluteTemplate() {
 
 export function generateUnauthenticatedNavigationListTemplate() {
   return `
+    <li><button class="subscribe-button" id="subscribe-button">Subscribe</button></li>
+    <li><button class="subscribe-button" id="unsubscribe-button" hidden>Unsubscribe</button></li>
     <li><a href="#/">Beranda</a></li>
     <li><a href="#/about">About</a></li>
     <li><a href="#/login">login</a></li>
@@ -64,6 +66,8 @@ export function generateUnauthenticatedNavigationListTemplate() {
 
 export function generateAuthenticatedNavigationListTemplate() {
   return `
+    <li><button class="subscribe-button" id="subscribe-button">Subscribe</button></li>
+    <li><button class="subscribe-button" id="unsubscribe-button" hidden>Unsubscribe</button></li>
     <li><a href="#/">Beranda</a></li>
     <li><a href="#/about">About</a></li>
     <li><a id="logout-button" class="out-button" href="#/logout"><i class="fas fa-sign-out-alt"></i> logout</a></li>
