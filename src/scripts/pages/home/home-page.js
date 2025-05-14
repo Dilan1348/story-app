@@ -11,7 +11,7 @@ export default class HomePage {
         <div class="new-story-container">
           <p>Share Your own stories with everyone</p>
           <div class="story-button">
-          <div class="new-story-button"><a href="#/stories" class="new-story__link"><i class="fas fa-plus"></i> Saved Story</a></div>
+          <div class="new-story-button"><a href="#/stories" class="new-story__link"><i class="fas fa-save"></i> Saved Story</a></div>
           <div class="new-story-button"><a href="#/stories" class="new-story__link"><i class="fas fa-plus"></i> New Story</a></div>
           </div>
         </div>
