@@ -1,8 +1,9 @@
 import * as StoryAPI from '../../data/api.js';
 import DetailPresenter from './story-detail-presenter.js';
-import { generateStoryDetailTemplate, generateLoaderAbsoluteTemplate } from '../../template.js'
+import { generateStoryDetailTemplate, generateLoaderAbsoluteTemplate, generateSaveStoryButtonTemplate, generateRemoveStoryButtonTemplate } from '../../template.js'
 import { parseActivePathname } from '../../routes/url-parser.js'
 import Map from '../../utils/map.js';
+import Database from '../../data/database';
 
 export default class DetailPage {
   #presenter = null;
@@ -14,6 +15,8 @@ export default class DetailPage {
             <div id="story-detail-loading-container"></div>
             <h1>Detail Story</h1>
             <div id="story-detail" class="story-detail-container"></div>
+            <div id="save-container" class="save-story-container">
+            </div>
         </section>
         `;
   }
@@ -22,6 +25,7 @@ export default class DetailPage {
     this.#presenter = new DetailPresenter(parseActivePathname().id, {
       model: StoryAPI,
       view: this,
+      dbModel: Database,
     });
 
     await this.#presenter.init();
@@ -63,6 +67,8 @@ export default class DetailPage {
     }
 
     document.getElementById('location').innerHTML = await Map.getPlaceNameByCoordinate(story.lat, story.lon);
+
+    this.renderSaveButton();
   }
 
   showStorytDetailLoading() {
@@ -80,5 +86,32 @@ export default class DetailPage {
 
   hideMapLoading() {
     document.getElementById('map-loading-container').innerHTML = '';
+  }
+
+  renderSaveButton() {
+    document.getElementById('save-container').innerHTML =
+      generateSaveStoryButtonTemplate();
+
+    document.getElementById('story-detail-save').addEventListener('click', async () => {
+      await this.#presenter.saveStory();
+      await this.#presenter.showSaveButton();
+    });
+  }
+
+  renderRemoveButton() {
+    document.getElementById('save-container').innerHTML =
+      generateRemoveStoryButtonTemplate();
+
+    document.getElementById('story-detail-save').addEventListener('click', async () => {
+      await this.#presenter.saveStory();
+    });
+  }
+
+  saveToBookmarkSuccessfully(message) {
+    console.log(message);
+  }
+
+  saveToBookmarkFailed(message) {
+    alert(message);
   }
 }

@@ -65,5 +65,33 @@
             "type": "image/png",
             "form_factor": "wide"
         }
+    ],
+    "shortcuts": [
+        {
+            "name": "Story Baru",
+            "short_name": "Baru",
+            "description": "Membuat laporan kerusakan baru.",
+            "url": "/?source=pwa#/stories",
+            "icons": [
+                {
+                    "src": "images/icons/add-x512.png",
+                    "type": "image/png",
+                    "sizes": "512x512"
+                }
+            ]
+        },
+        {
+            "name": "Story Tersimpan",
+            "short_name": "Tersimpan",
+            "description": "Lihat daftar laporan tersimpan.",
+            "url": "/?source=pwa#/bookmark",
+            "icons": [
+                {
+                    "src": "images/icons/saved-x512.png",
+                    "type": "image/png",
+                    "sizes": "512x512"
+                }
+            ]
+        }
     ]
 }

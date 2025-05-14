@@ -73,3 +73,19 @@ export function generateAuthenticatedNavigationListTemplate() {
     <li><a id="logout-button" class="out-button" href="#/logout"><i class="fas fa-sign-out-alt"></i> logout</a></li>
   `;
 }
+
+export function generateSaveStoryButtonTemplate() {
+  return `
+    <button id="story-detail-save" class="btn btn-transparent">
+      Simpan Story <i class="far fa-bookmark"></i>
+    </button>
+  `;
+}
+
+export function generateRemoveStoryButtonTemplate() {
+  return `
+    <button id="report-detail-remove" class="btn btn-transparent">
+      Hapus Story <i class="fas fa-bookmark"></i>
+    </button>
+  `;
+}

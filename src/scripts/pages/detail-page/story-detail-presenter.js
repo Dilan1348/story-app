@@ -2,12 +2,14 @@ export default class DetailPresenter {
     #model;
     #view;
     #detailId;
+    #dbModel;
 
 
-    constructor(detailId, { model, view }) {
+    constructor(detailId, { model, view, dbModel }) {
         this.#model = model;
         this.#view = view;
         this.#detailId = detailId;
+        this.#dbModel = dbModel;
     }
 
     async init() {
@@ -34,5 +36,30 @@ export default class DetailPresenter {
         } finally {
             this.#view.hideMapLoading();
         }
+    }
+
+    async saveStory() {
+        try {
+            const story = await this.#model.getDetailStory(this.#detailId);
+            await this.#dbModel.putStory(story);
+
+            this.#view.saveToBookmarkSuccessfully('Berhasil menyimpan story');
+        } catch (error) {
+            console.error('saveStory: error:', error);
+            this.#view.saveToBookmarkFailed(error.message);
+        }
+    }
+
+    async showSaveButton() {
+        if (await this.#isStorySaved()) {
+            this.#view.renderRemoveButton();
+            return;
+        }
+
+        this.#view.renderSaveButton();
+    }
+
+    async #isStorySaved() {
+        return !!(await this.#dbModel.getStoryById(this.#detailId));
     }
 }
