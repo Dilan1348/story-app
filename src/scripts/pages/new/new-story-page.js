@@ -38,7 +38,7 @@ export default class NewStory {
                         <canvas id="canvas" style="display: none;"></canvas>
                     </div>
                 </div>
-                <div class="map-container">
+                <div class="form-map-container">
                     <h2>Lokasi</h2>
                     <div class="location-container">
                         <div class="form-control">

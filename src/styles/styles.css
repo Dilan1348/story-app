@@ -89,9 +89,10 @@ body {
   font-weight: bold;
 }
 
-.new-story-button {
+.button {
   padding: 0.5em 1em;
   text-align: center;
+  color: white;
   background-color: #007BFF;
   border: none;
   border-radius: 5px;
@@ -104,20 +105,27 @@ body {
 .story-button {
   display: flex;
   gap: 10px;
-
 }
 
-.new-story-button:hover {
+.button:hover {
   background-color: #026cdd;
 }
 
-.new-story-button .new-story__link {
+.button .new-story__link {
   font-size: .9rem;
   font-weight: bold;
   color: white;
 }
 
 .stories-container {
+  margin-top: 15px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.saved-story-container {
   margin-top: 15px;
   display: grid;
   justify-items: center;
@@ -366,6 +374,11 @@ body {
   max-width: 1300px;
 }
 
+.save-story-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .story-detail-container {
   display: flex;
   flex-direction: column;
@@ -398,8 +411,14 @@ body {
 
 .map-container {
   width: 100%;
+  height: 630px;
+  margin: 20px 0;
+}
+
+.form-map-container {
+  width: 100%;
   height: 700px;
-  margin-bottom: 30px;
+  margin: 20px 0 30px;
 }
 
 .map-container h2 {
@@ -444,6 +463,12 @@ body {
 }
 
 .home-page-container {
+  padding-inline: 32px;
+  margin-inline: auto;
+  max-width: 1300px;
+}
+
+.saved-page-container {
   padding-inline: 32px;
   margin-inline: auto;
   max-width: 1300px;

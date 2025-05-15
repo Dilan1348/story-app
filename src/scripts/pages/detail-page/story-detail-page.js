@@ -13,10 +13,12 @@ export default class DetailPage {
     return `
         <section class="detail-page-container">
             <div id="story-detail-loading-container"></div>
-            <h1>Detail Story</h1>
-            <div id="story-detail" class="story-detail-container"></div>
             <div id="save-container" class="save-story-container">
+              <h1>Detail Story</h1>
+              <div id="save-button-container" class="save-button-container">
+              </div>
             </div>
+            <div id="story-detail" class="story-detail-container"></div>
         </section>
         `;
   }
@@ -89,7 +91,7 @@ export default class DetailPage {
   }
 
   renderSaveButton() {
-    document.getElementById('save-container').innerHTML =
+    document.getElementById('save-button-container').innerHTML =
       generateSaveStoryButtonTemplate();
 
     document.getElementById('story-detail-save').addEventListener('click', async () => {
@@ -99,7 +101,7 @@ export default class DetailPage {
   }
 
   renderRemoveButton() {
-    document.getElementById('save-container').innerHTML =
+    document.getElementById('save-button-container').innerHTML =
       generateRemoveStoryButtonTemplate();
 
     document.getElementById('story-detail-remove').addEventListener('click', async () => {

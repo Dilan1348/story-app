@@ -1,5 +1,5 @@
-export function generateStoryTemplate({ id, photoUrl, name, description, createdAt}) {
-    return `
+export function generateStoryTemplate({ id, photoUrl, name, description, createdAt }) {
+  return `
       <div class="stories-item-container">
         <div class="stories-item">
           <h2 class="stories-item__name">${name}</h2>
@@ -76,16 +76,16 @@ export function generateAuthenticatedNavigationListTemplate() {
 
 export function generateSaveStoryButtonTemplate() {
   return `
-    <button id="story-detail-save" class="btn btn-transparent">
-      Simpan Story <i class="far fa-bookmark"></i>
+    <button id="story-detail-save" class="button save-button">
+      Simpan Story <i class="far fa-save"></i>
     </button>
   `;
 }
 
 export function generateRemoveStoryButtonTemplate() {
   return `
-    <button id="story-detail-remove" class="btn btn-transparent">
-      Hapus Story <i class="fas fa-bookmark"></i>
+    <button id="story-detail-remove" class="button remove-button">
+      Hapus Story <i class="fas fa-save"></i>
     </button>
   `;
 }
