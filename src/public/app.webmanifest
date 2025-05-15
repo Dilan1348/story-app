@@ -64,6 +64,24 @@
             "sizes": "1906x962",
             "type": "image/png",
             "form_factor": "wide"
+        },
+        {
+            "src": "images/screenshots/StoryApp_004.jpg",
+            "sizes": "1080x2340",
+            "type": "image/jpg",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "images/screenshots/StoryApp_005.jpg",
+            "sizes": "1080x2340",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "images/screenshots/StoryApp_006.jpg",
+            "sizes": "1080x2340",
+            "type": "image/png",
+            "form_factor": "wide"
         }
     ],
     "shortcuts": [
@@ -84,7 +102,7 @@
             "name": "Story Tersimpan",
             "short_name": "Tersimpan",
             "description": "Lihat daftar laporan tersimpan.",
-            "url": "/?source=pwa#/bookmark",
+            "url": "/?source=pwa#/saved",
             "icons": [
                 {
                     "src": "images/icons/saved-x512.png",
