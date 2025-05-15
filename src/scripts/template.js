@@ -84,7 +84,7 @@ export function generateSaveStoryButtonTemplate() {
 
 export function generateRemoveStoryButtonTemplate() {
   return `
-    <button id="report-detail-remove" class="btn btn-transparent">
+    <button id="story-detail-remove" class="btn btn-transparent">
       Hapus Story <i class="fas fa-bookmark"></i>
     </button>
   `;

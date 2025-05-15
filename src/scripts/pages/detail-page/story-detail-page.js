@@ -68,7 +68,7 @@ export default class DetailPage {
 
     document.getElementById('location').innerHTML = await Map.getPlaceNameByCoordinate(story.lat, story.lon);
 
-    this.renderSaveButton();
+    this.#presenter.showSaveButton();
   }
 
   showStorytDetailLoading() {
@@ -102,8 +102,9 @@ export default class DetailPage {
     document.getElementById('save-container').innerHTML =
       generateRemoveStoryButtonTemplate();
 
-    document.getElementById('story-detail-save').addEventListener('click', async () => {
-      await this.#presenter.saveStory();
+    document.getElementById('story-detail-remove').addEventListener('click', async () => {
+      await this.#presenter.removeStory();
+      await this.#presenter.showSaveButton();
     });
   }
 
@@ -112,6 +113,14 @@ export default class DetailPage {
   }
 
   saveToBookmarkFailed(message) {
+    alert(message);
+  }
+
+  removeFromBookmarkSuccessfully(message) {
+    console.log(message);
+  }
+
+  removeFromBookmarkFailed(message) {
     alert(message);
   }
 }

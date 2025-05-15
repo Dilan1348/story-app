@@ -50,6 +50,17 @@ export default class DetailPresenter {
         }
     }
 
+    async removeStory() {
+        try {
+            await this.#dbModel.removeStory(this.#detailId);
+
+            this.#view.removeFromBookmarkSuccessfully('Success to remove from bookmark');
+        } catch (error) {
+            console.error('removeReport: error:', error);
+            this.#view.removeFromBookmarkFailed(error.message);
+        }
+    }
+
     async showSaveButton() {
         if (await this.#isStorySaved()) {
             this.#view.renderRemoveButton();

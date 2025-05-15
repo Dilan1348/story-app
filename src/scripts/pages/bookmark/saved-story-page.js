@@ -1,44 +1,44 @@
-import { generateStoryDetailTemplate, generateLoaderAbsoluteTemplate, generateSaveStoryButtonTemplate, generateRemoveStoryButtonTemplate } from '../../template.js'
-import { parseActivePathname } from '../../routes/url-parser.js'
-import Map from '../../utils/map.js';
+import { generateStoryTemplate } from '../../template.js'
 import Database from '../../data/database';
+import SavedPresenter from './saved-story-presenter.js';
 
 export default class SavedPage {
     #presenter = null;
-    #map = null;
 
     async render() {
         return `
         <section class="saved-page-container">
             <h1>Story Tersimpan</h1>
-            <div id="story-detail" class="saved-story-container"></div>
+            <div id="saved-story-container" class="saved-story-container"></div>
             </div>
         </section>
         `;
     }
 
     async afterRender() {
-        this.#presenter = new DetailPresenter(parseActivePathname().id, {
+        this.#presenter = new SavedPresenter({
+            model: Database,
             view: this,
-            dbModel: Database,
         });
-
         await this.#presenter.init();
-    }
+    };
 
-    async initialMap() {
-        this.#map = await Map.build('#map', {
-            zoom: 15,
-            locate: true,
-            scrollWheelZoom: true,
+    showStories(stories) {
+        const list = document.getElementById("saved-story-container");
+        list.innerHTML = "";
+
+        stories.forEach(story => {
+            const storyGroup = generateStoryTemplate({
+                id: story.id,
+                photoUrl: story.photoUrl,
+                name: story.name,
+                description: story.description,
+                createdAt: story.createdAt,
+            });
+
+            const wrapper = document.createElement("div");
+            wrapper.innerHTML = storyGroup;
+            list.appendChild(wrapper.firstElementChild);
         });
-    }
-
-    showMapLoading() {
-        document.getElementById('map-loading-container').innerHTML = generateLoaderAbsoluteTemplate();
-    }
-
-    hideMapLoading() {
-        document.getElementById('map-loading-container').innerHTML = '';
     }
 }

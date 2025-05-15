@@ -26,5 +26,13 @@ const Database = {
         }
         return (await dbPromise).get(OBJECT_STORE_NAME, id);
     },
+
+    async getSavedStories() {
+        return (await dbPromise).getAll(OBJECT_STORE_NAME);
+    },
+
+    async removeStory(id) {
+        return (await dbPromise).delete(OBJECT_STORE_NAME, id);
+    },
 };
 export default Database;
