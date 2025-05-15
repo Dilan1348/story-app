@@ -468,6 +468,12 @@ body {
   max-width: 1300px;
 }
 
+.not-found {
+  padding-inline: 32px;
+  margin-inline: auto;
+  max-width: 1300px;
+}
+
 .saved-page-container {
   padding-inline: 32px;
   margin-inline: auto;

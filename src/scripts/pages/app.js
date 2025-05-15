@@ -7,6 +7,7 @@ import {
 } from '../template';
 import { transitionHelper, isServiceWorkerAvailable } from '../utils';
 import { subscribe, unsubscribe, isCurrentPushSubscriptionAvailable } from '../utils/notification-helper';
+import NotFoundPresenter from '../pages/notFound/notfound-presenter';
 
 class App {
   #content = null;
@@ -95,10 +96,16 @@ class App {
 
     const transition = transitionHelper({
       updateDOM: async () => {
-        this.#content.innerHTML = await page.render();
-        await page.afterRender();
+        if (page) {
+          this.#content.innerHTML = await page.render();
+          await page.afterRender();
+        } else {
+          const notFound = new NotFoundPresenter();
+          await notFound.render(this.#content);
+        }
       },
     });
+
     transition.ready.catch(console.error);
     transition.updateCallbackDone.then(() => {
       scrollTo({ top: 0, behavior: 'instant' });
